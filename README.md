@@ -1,9 +1,9 @@
 # POKEDEX
 
 Nome dos integrantes: 
-- Pessoa 1
-- Pessoa 2
-- Pessoa 3
+- Luian Gabriel Barbosa de Jesus Costa
+- Luis Felipe Melo Tavares
+- Mariana Mendes de Lima
 
 Link do Surge: www.link.com.br
 
