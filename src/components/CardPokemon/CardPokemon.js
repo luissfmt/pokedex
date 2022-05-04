@@ -1,16 +1,41 @@
-import React from "react";
+import React, { useContext } from "react";
+import GlobalStateContext from "../../global/GlobalStateContext"
 
-function CardPokemon({name, image}) {
+export function CardPokemon(props) {
+    const { pokemons, setPokemons, pokedex, setPokedex } = useContext(GlobalStateContext);
+
+    const removeFromPokedex = () => {
+        //Encontra o index do pokémon cliclado pela função
+        const pokeIndex = pokedex.findIndex((item) => item.name === props.poke.name);
+
+        // ------- Copia lista de pokemons na pokedex
+        const newPokedexList = [...pokedex]
+
+        // ------- Remove o pokemon selecionado
+        newPokedexList.splice(pokeIndex, 1);
+
+        // ------- Ordena a lista da pokedex
+        const orderedPokedex = newPokedexList.sort((a, b) => {
+            return a.id - b.id;
+        });
+
+        // ------- Copia lista de pokemons
+        const newPokemonsList = [...pokemons];
+
+        // ------ Atualiza lista de pokemons
+        newPokemonsList.push(props.pokemon)
+
+        // ------- Ordena lista de pokemons
+        const orderedPokemons = newPokemonsList.sort((a, b) => {
+            return a.id - b.id
+        })
+        // Atualiza os estados
+        setPokedex(orderedPokedex)
+        setPokemons(orderedPokemons)
+    };
 
     return (
-        <div>
-            {name}
-            <img src={image} alt={name} />
-            {!Pokedex && <Button onClick={addToPokedex}>Adicionar</Button>}
-            {Pokedex && <Button onClick={removeFromPokedex}>Remover</Button>}
-            <button onClick={navigate(`/details/${name}`)}>Detalhes</div></button>
-        </div>
+        <>
+        </>
     )
-}
-
-export default CardPokemon;
+};

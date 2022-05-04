@@ -1,5 +1,11 @@
 import React from "react";
+import { Header } from "../../components/Header/Header";
 
-function Pokedex (){
-    return
+export function Pokedex() {
+
+    return (
+        <div>
+            <Header/>
+        </div>
+    )
 }
