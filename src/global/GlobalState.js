@@ -38,6 +38,7 @@ export function GlobalState({children}) {
     const data = {
         pokemonNames,
         pokemons,
+        setPokemons,
         pokedex,
         setPokedex
     };
