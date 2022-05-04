@@ -12,12 +12,9 @@ export function PokemonsList() {
 
     return (
         <div>
+      
             <Header />
 
-            {pokemons && 
-            <CardPokemon 
-            pokemons={pokemons}
-            />}
         </div>
     );
 };
