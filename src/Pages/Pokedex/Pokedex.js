@@ -1,5 +1,5 @@
 import React from "react";
 
-function Pokedex (){
-    return
+export function Pokedex() {
+    return <></>
 }

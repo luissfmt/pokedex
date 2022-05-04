@@ -1,16 +1,52 @@
-import React from "react";
+import React, { useContext } from "react";
+import { GlobalStateContext } from "../../global/GlobalStateContext";
 
-function CardPokemon({name, image}) {
+export function CardPokemon(props) {
+    const [pokemons, setPokemons, pokedex, setPokedex] = useContext(GlobalStateContext);
+    
+    const addToPokedex = () => {
+        //Encontra o index do pokémon clicado pela função
+        const ClickedPokemonIndex = pokemons.findIndex((pokemon) => pokemon.id === props.pokemon.name);
+
+        // ------- Faz a cópia do array de estado pokémon
+        const newPokemonsList = [...pokemons];
+
+        // ------- Remove o pokemón clicado da lista de pokémon
+        newPokemonsList.splice(ClickedPokemonIndex, 1);
+        
+        // ------- Ordena a lista de pokémon de acordo com suas evoluções 
+        const orderedPokemonsList = newPokemonsList.sort((pokemonA, pokemonB) => {
+            return pokemonA.id - pokemonB.id;
+        });
+
+        // ------- Faz a cópia do array de estado pokedex
+        const newPokedexList = [...pokedex];
+
+        // ------- Adiciona o pokémon selecionado a pokedex
+        newPokedexList.push(props.pokemon);
+        
+        // ------- Ordena a lista da pokedex de acordo com suas evoluções
+        const orderedPokedexList = newPokedexList.sort((pokemonA, pokemonB) => {
+            return pokemonA - pokemonB;
+        });
+        
+        // ------- Atualiza os estados após a execução das funções
+        setPokedex(orderedPokedexList);
+        setPokemons(orderedPokemonsList);
+    };
 
     return (
-        <div>
-            {name}
-            <img src={image} alt={name} />
-            {!Pokedex && <Button onClick={addToPokedex}>Adicionar</Button>}
-            {Pokedex && <Button onClick={removeFromPokedex}>Remover</Button>}
-            <button onClick={navigate(`/details/${name}`)}>Detalhes</div></button>
-        </div>
-    )
-}
+        <>
+            <div>
+                <img src={props.image} alt={props.name} />
+                <p>{props.name}</p>
 
-export default CardPokemon;
+                <button onClick={ props.isPokedexPage ? removeFromPokedex : addToPokedex }>
+                    {props.isPokedexPage ? "Remover da Pokedex" : "Adicionar a Pokedex"}
+                </button>
+
+                <button>Detalhes</button>
+            </div>
+        </>
+    )
+};
