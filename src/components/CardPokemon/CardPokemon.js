@@ -1,8 +1,13 @@
 import React, { useContext } from "react";
-import { GlobalStateContext } from "../../global/GlobalStateContext"
+import { useNavigate } from "react-router-dom";
+import { GlobalStateContext } from "../../global/GlobalStateContext";
+import { goToPokemonDetails } from "../../routes/coordinator";
+
+import { CardContainer } from "../CardPokemon/styled";
 
 export function CardPokemon(props) {
     const { pokemons, setPokemons, pokedex, setPokedex } = useContext(GlobalStateContext);
+    const navigate = useNavigate();
     
     const addToPokedex = () => {
         //Encontra o index do pokémon clicado pela função
@@ -13,6 +18,7 @@ export function CardPokemon(props) {
 
         // ------- Remove o pokemón clicado da lista de pokémon
         newPokemonsList.splice(ClickedPokemonIndex, 1);
+        console.log(ClickedPokemonIndex)
         
         // ------- Ordena a lista de pokémon de acordo com suas evoluções 
         const orderedPokemonsList = newPokemonsList.sort((pokemonA, pokemonB) => {
@@ -38,13 +44,14 @@ export function CardPokemon(props) {
   
     const removeFromPokedex = () => {
         //Encontra o index do pokémon cliclado pela função
-        const pokeIndex = pokedex.findIndex((item) => item.name === props.pokemon.name);
+        const pokeIndex = pokedex.findIndex((pokemon) => pokemon.name === props.pokemon.name);
 
         // ------- Copia lista de pokemons na pokedex
         const newPokedexList = [...pokedex]
 
         // ------- Remove o pokemon selecionado
         newPokedexList.splice(pokeIndex, 1);
+        console.log(pokeIndex)
 
         // ------- Ordena a lista da pokedex
         const orderedPokedex = newPokedexList.sort((a, b) => {
@@ -67,17 +74,16 @@ export function CardPokemon(props) {
     };
     
     return (
-        <>
-            <div>
-                <img src={props.image} alt={props.name} />
-                <p>{props.name}</p>
+        <CardContainer tela={props.isPokedexPage}>
+            <img src={props.image} alt={props.name} />
+            <p>{props.name}</p>
 
+            <div>
                 <button onClick={ props.isPokedexPage ? removeFromPokedex : addToPokedex }>
                     {props.isPokedexPage ? "Remover da Pokedex" : "Adicionar a Pokedex"}
                 </button>
-
-                <button>Detalhes</button>
+                <button onClick={ () => goToPokemonDetails(navigate, props.name)}>Detalhes</button>
             </div>
-        </>
+        </CardContainer>
     )
 }

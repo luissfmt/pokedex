@@ -10,19 +10,15 @@ export function Header(props) {
 
     return (
         <HeaderContainer>
+            <button onClick={props.isPokedexPage ? () => goToPokemonsList(navigate) : () => goToPokedex(navigate)}>
+                {props.isPokedexPage ? "Voltar para lista de Pokémons" : "Ir para pokedex" }
+            </button>
 
-            <div>
-                <button onClick={props.isPokedexPage ? () => goToPokemonsList(navigate) : () => goToPokedex(navigate)}>
-                    {props.isPokedexPage ? "Voltar para lista de Pokémons" : "Ir para pokedex" }
-                </button>
+            <h1>
+                {props.isPokedexPage ? "Pokedex" : "Lista de Pokemons"}
+            </h1>
 
-                <h1>
-                    {props.isPokedexPage ? "Pokedex" : "Lista de Pokemons"}
-                </h1>
-
-                <img src={pokedexLogo} alt="Logo Pokedex" />
-            </div>
-            
+            <img src={pokedexLogo} alt="Logo Pokedex" />
         </HeaderContainer>
     );
 };
