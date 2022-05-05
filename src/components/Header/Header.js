@@ -5,6 +5,7 @@ import pokedexLogo from "../../assets/pokedex_logo.png";
 import { goToPokedex, goToPokemonsList } from "../../routes/coordinator";
 import { useNavigate } from "react-router-dom";
 
+
 export function Header(props) {
     const navigate = useNavigate();
 
