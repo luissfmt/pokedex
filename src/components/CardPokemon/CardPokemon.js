@@ -33,7 +33,6 @@ export function CardPokemon(props) {
         // ------- Atualiza os estados após a execução das funções
         setPokedex(orderedPokedexList);
         setPokemons(orderedPokemonsList);
-        console.log("POKEDEX: ", pokedex);
     };
 
   
