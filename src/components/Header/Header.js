@@ -2,16 +2,25 @@ import { HeaderContainer } from "./styled";
 
 import pokedexLogo from "../../assets/pokedex_logo.png";
 
-export function Header() {
+import { goToPokedex, goToPokemonsList } from "../../routes/coordinator";
+import { useNavigate } from "react-router-dom";
+
+export function Header(props) {
+    const navigate = useNavigate();
+
     return (
         <HeaderContainer>
 
             <div>
-                <button>Ir para Pokedex</button>
+                <button onClick={props.isPokedexPage ? () => goToPokemonsList(navigate) : () => goToPokedex(navigate)}>
+                    {props.isPokedexPage ? "Voltar para lista de Pokémons" : "Ir para pokedex" }
+                </button>
 
-                <img src={pokedexLogo} alt="" />
+                <h1>
+                    {props.isPokedexPage ? "Pokedex" : "Lista de Pokemons"}
+                </h1>
 
-                <p>Lista de Pokemóns</p>
+                <img src={pokedexLogo} alt="Logo Pokedex" />
             </div>
             
         </HeaderContainer>
