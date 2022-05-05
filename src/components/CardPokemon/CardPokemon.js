@@ -6,7 +6,7 @@ export function CardPokemon(props) {
     
     const addToPokedex = () => {
         //Encontra o index do pokémon clicado pela função
-        const ClickedPokemonIndex = pokemons.findIndex((pokemon) => pokemon.id === props.pokemon.name);
+        const ClickedPokemonIndex = pokemons.findIndex((pokemon) => pokemon.name === props.pokemon.name);
 
         // ------- Faz a cópia do array de estado pokémon
         const newPokemonsList = [...pokemons];
@@ -34,6 +34,7 @@ export function CardPokemon(props) {
         setPokedex(orderedPokedexList);
         setPokemons(orderedPokemonsList);
     };
+
   
     const removeFromPokedex = () => {
         //Encontra o index do pokémon cliclado pela função
@@ -63,8 +64,8 @@ export function CardPokemon(props) {
         // Atualiza os estados
         setPokedex(orderedPokedex)
         setPokemons(orderedPokemons)
-    }
-
+    };
+    
     return (
         <>
             <div>
@@ -79,4 +80,4 @@ export function CardPokemon(props) {
             </div>
         </>
     )
-};
+}

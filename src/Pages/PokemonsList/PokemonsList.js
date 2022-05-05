@@ -8,12 +8,14 @@ import { GlobalStateContext } from "../../global/GlobalStateContext";
 export function PokemonsList() {
     const { pokemons } = useContext(GlobalStateContext);
 
-    console.log(pokemons);
-
     return (
         <div>
       
             <Header />
+
+            {pokemons && pokemons.map((pokemon) => {
+                return <CardPokemon pokemon={pokemon} image={pokemon.sprites.front_default} name={pokemon.name} />
+            })}
 
         </div>
     );

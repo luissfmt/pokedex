@@ -19,7 +19,14 @@ export function GlobalState({children}) {
             axios.get(`${BASE_URL}/pokemon/${pokemon.name}`)
             .then((response) => {
                 newPokemonsList.push(response.data);
-                setPokemons(newPokemonsList);
+                if (newPokemonsList.length === 30) {
+                    const orderedPokemonsList = newPokemonsList.sort((pokemonA, pokemonB) => {
+                        return pokemonA.id - pokemonB.id;
+                    });
+
+                setPokemons(orderedPokemonsList);                    
+                }
+
             }).catch(error => console.log(error))
         });
     };
@@ -29,7 +36,7 @@ export function GlobalState({children}) {
     }, [pokemonNames]);
 
     const getPokemonNames = () => {
-        axios.get(`${BASE_URL}/pokemon?limit=20`)
+        axios.get(`${BASE_URL}/pokemon?limit=30`)
         .then((response) => {
             setPokemonNames(response.data.results);
         }).catch(error => console.log(error));
