@@ -63,6 +63,7 @@ export function CardPokemon(props) {
         // Atualiza os estados
         setPokedex(orderedPokedex)
         setPokemons(orderedPokemons)
+    }
 
     return (
         <>
