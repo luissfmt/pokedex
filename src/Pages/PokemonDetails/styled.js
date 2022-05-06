@@ -4,6 +4,10 @@ import { dark_yellow, light_yellow } from "../../constants/colors";
 export const Titulo = styled.div`
     display: flex;
     justify-content: center;
+
+    h1 {
+        text-transform: capitalize;
+    }
 `
 
 export const ContainerDatails = styled.div`

@@ -2,17 +2,15 @@ import React, { useContext } from "react";
 import { CardPokemon } from "../../components/CardPokemon/CardPokemon";
 import { Header } from "../../components/Header/Header";
 import { GlobalStateContext } from "../../global/GlobalStateContext"
-import { ContainerList } from "../../components/CardStyle/styled";
+import { ContainerList } from "../../components/cardsListStyle/styled";
 import backgroundPokedex from "../../assets/pokedex_background.png";
 
 export function Pokedex() {
     const { pokedex } = useContext(GlobalStateContext)
-
+    console.log(pokedex)
     return (
         <div>
-            <Header 
-            isPokedexPage
-            />
+            <Header title="Pokedex" currentPage="pokedex" />
 
             <ContainerList>
                 {pokedex &&
