@@ -5,7 +5,7 @@ Nome dos integrantes:
 - Luis Felipe Melo Tavares
 - Mariana Mendes de Lima
 
-Link do Surge: www.link.com.br
+Link do Surge: https://sophisticated-rule.surge.sh
 
 O que funciona:
 - Item 1
