@@ -19,8 +19,7 @@ export const CardContainer = styled.div`
     };
 
     img {
-        background-image: ${(props) => props.tela ? `url(${backgroundPokedex});` : `url(${backgroundPokemonList});`};
-            
+        background-image: ${(props) => props.tela ? `url(${backgroundPokedex}); background-position: center;` : `url(${backgroundPokemonList});`};
         background-size: cover;
         background-repeat: no-repeat;
     };

@@ -3,27 +3,52 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom"
 import { GlobalStateContext } from "../../global/GlobalStateContext";
 import { BASE_URL } from "../../constants/url"
-import { HeaderDatails } from "./Header/HeaderDetails";
 import { ContainerDatails, Collumn, ContainerImage,  ContainerStats, ContainerTypes, ContainerMoves, Titulo } from "./styled";
+import { Header } from "../../components/Header/Header";
 
 export function PokemonDetails() {
     const params = useParams();
-    const [selectedPokemon, setSelectedPokemon] = useState({})
+    const [selectedPokemon, setSelectedPokemon] = useState({});
+    const {pokemons, setPokemons, pokedex, setPokedex} = useContext(GlobalStateContext);
 
     useEffect(() => {
-        axios.get(`https://pokeapi.co/api/v2/pokemon/${params.name}`).then((res) => {
-
-            console.log("deu certo", params.name)
-
-            console.log(res.data)
+        axios.get(`${BASE_URL}/pokemon/${params.name}`)
+            .then((res) => {
             setSelectedPokemon(res.data);
-
-        });
+        }).catch(error => console.log(error));
     }, []);
+
+    // const addOrRemoveFromPokedex = () => {
+    //     const foundSelectedPokemon = pokedex && pokedex.findIndex((pokemon) => {
+    //         return selectedPokemon.id === pokemon.id;
+    //     });
+
+    //     const pokemonsCopy = [...pokemons];
+    //     const pokedexCopy = [...pokedex];
+
+    //     if(foundSelectedPokemon > 0) {
+    //         pokemonsCopy.push(selectedPokemon)
+    //         const addAndOrdered = pokemonsCopy.sort((a, b) => a.id - b.id);
+    //         pokedexCopy.splice(foundSelectedPokemon, 1);
+    //         const remAndOrdered = pokedexCopy.sort((a, b) =>  a.id - b.id);
+    //         pokedexCopy.push(remAndOrdered);
+    //         setPokemons(addAndOrdered);
+    //         setPokedex(remAndOrdered);
+    //     } else {
+    //         pokedexCopy.push(selectedPokemon);
+    //         const addAndOrdered = pokedexCopy.sort((a, b) => a.id - b.id);
+    //         pokemonsCopy.splice(foundSelectedPokemon, 1);
+    //         const remAndOrdered = pokemonsCopy.sort((a, b) => a.id - b.id);
+    //         pokemons.push(pokemonsCopy);
+    //         setPokedex(addAndOrdered);
+    //         setPokemons(remAndOrdered);
+    //     };
+    // };
 
     return (
         <div>
-            <HeaderDatails />
+            <Header title="Detalhes" currentPage="details" /* addOrRemovePokemon={addOrRemoveFromPokedex} */ />
+
             <Titulo>
              <h1>{params.name}</h1>   
             </Titulo>

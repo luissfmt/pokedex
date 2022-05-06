@@ -18,7 +18,6 @@ export function CardPokemon(props) {
 
         // ------- Remove o pokemón clicado da lista de pokémon
         newPokemonsList.splice(ClickedPokemonIndex, 1);
-        console.log(ClickedPokemonIndex)
         
         // ------- Ordena a lista de pokémon de acordo com suas evoluções 
         const orderedPokemonsList = newPokemonsList.sort((pokemonA, pokemonB) => {
@@ -51,7 +50,6 @@ export function CardPokemon(props) {
 
         // ------- Remove o pokemon selecionado
         newPokedexList.splice(pokeIndex, 1);
-        console.log(pokeIndex)
 
         // ------- Ordena a lista da pokedex
         const orderedPokedex = newPokedexList.sort((a, b) => {
