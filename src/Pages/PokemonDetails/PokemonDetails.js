@@ -1,77 +1,80 @@
-import React, {useEffect, useState, useContext} from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { GlobalStateContext } from "../../global/GlobalStateContext";
-import {BASE_URL} from "../../constants/url"
-import { Header } from "../../components/Header/Header";
+import { BASE_URL } from "../../constants/url"
+import { HeaderDatails } from "./Header/HeaderDetails";
+import { ContainerDatails, Collumn, ContainerImage,  ContainerStats, ContainerTypes, ContainerMoves, Titulo } from "./styled";
 
-export function PokemonDetails () {
-    const {name, telaPokedex} = useParams();
-    const {pokemons, pokedex} = useContext(GlobalStateContext)
-    const [selectedPokemon, setSelectedPokemon] = useState({});
+export function PokemonDetails() {
+    const params = useParams();
+    const [selectedPokemon, setSelectedPokemon] = useState({})
 
-    useEffect (() => {
-        let current = []
-        if (telaPokedex) {
-            current = pokedex.find((item) =>{
-                return item.name === name;
-            })
-        } else {
-                current = pokemons.find((item) =>{
-                    return item.name === name;
-                })
-            }
-            if (!current) {
-                axios.get(`${BASE_URL}/pokemon/${name}`)
-                .then((res) => selectedPokemon(res.data))
-                .catch((err) => console.log(err.reponse.message))
-            } else {
-                setSelectedPokemon(current);
-            }
-        },[])
+    useEffect(() => {
+        axios.get(`https://pokeapi.co/api/v2/pokemon/${params.name}`).then((res) => {
 
-        console.log(selectedPokemon)
+            console.log("deu certo", params.name)
 
-    return(
+            console.log(res.data)
+            setSelectedPokemon(res.data);
+
+        });
+    }, []);
+
+    return (
         <div>
-            <Header/>
-            <div className="ContainerInfos">
-                {selectedPokemon && selectedPokemon.sprites &&
-                <div className="imagem">
-                    <img src={selectedPokemon.sprites.front_default} alt="foto pokemon" />
-                    <img src={selectedPokemon.sprites.back_default} alt="foto pokemon" />
-                </div>
-                }
-                <div className="stat">
+            <HeaderDatails />
+            <Titulo>
+             <h1>{params.name}</h1>   
+            </Titulo>
+            <ContainerDatails>
+                <Collumn>
+                    <ContainerImage>
+                        <img src={selectedPokemon.sprites && selectedPokemon.sprites.front_default} />
+                    </ContainerImage>
 
-                {selectedPokemon && selectedPokemon.stats.map((stat) => {
-                        return(
-                                <p key={stat.stat.name}>
-                                    <strong>{stat.stat.name}</strong> {stat.base.stat}
-                                </p>
-                        )})
-                }
+                    <ContainerImage>
+                        <img src={selectedPokemon.sprites && selectedPokemon.sprites.back_default} />
+                    </ContainerImage>
+                </Collumn>
 
-                </div>
-                <div className="habilidade">
-                    <div className="tipo">
-                    {selectedPokemon &&
-                    selectedPokemon.types.map((type) => {
-                        return(
-                                <p key={type.type.name}>{type.type.name}</p>
-                        )})
-                    }
-                    </div>
-                    <div className="moves">
-                    {selectedPokemon &&
-                    selectedPokemon.moves.map((move, index) => {
-                        return(
-                                index <5 && <p key={move.move.name}>{move.move.name}</p>
-                        )})
-                    }
-                    </div>
-                </div>
-            </div>
+                <Collumn>
+                    <ContainerStats>
+                         <h2><strong>Poderes</strong></h2>
+                        {selectedPokemon.stats &&
+                            selectedPokemon.stats.map((stat) => {
+                                return (
+                                    <p key={stat.stat.name}>
+                                        <strong>{stat.stat.name}: </strong>
+                                        {stat.base_stat}
+                                    </p>
+                                );
+                            })}
+                    </ContainerStats>
+                </Collumn>
+
+                <Collumn>
+                    <ContainerTypes>
+                        <h2><strong>Tipo</strong></h2>
+                        {selectedPokemon.types && selectedPokemon.types.map((type) => {
+                            return <p key={type.type.name}><strong>{type.type.name}</strong></p>;
+                        })}
+
+                    </ContainerTypes>
+
+                    <ContainerMoves>
+                        <h2><strong>Principais Ataques</strong></h2>
+                        {selectedPokemon.moves &&
+                            selectedPokemon.moves.map((move, index) => {
+                                return (
+                                    index < 5 && <p key={move.move.name}>{move.move.name}</p>
+                                );
+                            })}
+                    </ContainerMoves>
+                </Collumn>
+            </ContainerDatails>
         </div>
     )
+
+
 }
