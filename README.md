@@ -12,4 +12,4 @@ O que funciona:
 
 
 O que não funciona: 
-- Botão de adicionar/remover da página de Detalhes
+- Botão de adicionar/remover da página de Detalhes não funciona corretamente
