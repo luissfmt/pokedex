@@ -8,9 +8,8 @@ Nome dos integrantes:
 Link do Surge: https://sophisticated-rule.surge.sh
 
 O que funciona:
-- Item 1
-- Item 2
+- Lista de pokemons e pokedex funcionam como proposto
+
 
 O que não funciona: 
-- Item 3
-- Item 4
+- Botão de adicionar/remover da página de Detalhes
