@@ -6,10 +6,3 @@ Nome dos integrantes:
 - Mariana Mendes de Lima
 
 Link do Surge: https://sophisticated-rule.surge.sh
-
-O que funciona:
-- Lista de pokemons e pokedex funcionam como proposto
-
-
-O que não funciona: 
-- Botão de adicionar/remover da página de Detalhes não funciona corretamente
