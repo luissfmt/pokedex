@@ -15,9 +15,9 @@ Projeto possui uma lista de 30 pokemóns simulando uma pokedéx, permitindo chec
 ## :camera: Imagens do projeto
 
 <div>
-  <img src="https://i.imgur.com/uOVzsQS.png" width="320px" alt="Screenshot Projeto Rappi4" />
-  <img src="https://i.imgur.com/k7bZSXC.png" width="320px" alt="Screenshot Projeto Rappi4" />
-  <img src="https://i.imgur.com/NqjwyKi.png" width="320px" alt="Screenshot Projeto Rappi4" />
+  <img src="https://i.imgur.com/uOVzsQS.png" width="300px" alt="Screenshot Projeto Rappi4" />
+  <img src="https://i.imgur.com/k7bZSXC.png" width="300px" alt="Screenshot Projeto Rappi4" />
+  <img src="https://i.imgur.com/NqjwyKi.png" width="300px" alt="Screenshot Projeto Rappi4" />
 </div>
 
 ## :wrench: Tecnologias utilizadas
